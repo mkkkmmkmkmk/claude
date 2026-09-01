@@ -36,6 +36,18 @@ Copie `.env.example` para `.env.local` e gere um `AUTH_SECRET` (por exemplo com 
 - better-sqlite3 (persistência local, sem servidor de banco externo)
 - Tailwind CSS v4
 
+## Deploy no Netlify
+
+O repositório já inclui `netlify.toml` com o plugin oficial `@netlify/plugin-nextjs`. Para publicar:
+
+1. No painel do Netlify, "Add new site" → "Import an existing project" e conecte este repositório (ou rode `netlify deploy` pela CLI).
+2. Em **Site settings → Environment variables**, adicione:
+   - `AUTH_SECRET` — gere com `npx auth secret`
+   - `AUTH_TRUST_HOST` = `true`
+3. Deploy. O Netlify detecta o `netlify.toml` e usa `npm run build` automaticamente.
+
+⚠️ **Importante — banco de dados**: este projeto usa SQLite em arquivo (`better-sqlite3`) gravado no disco local, o que funciona bem em um servidor tradicional (Node sempre ligado) mas **não é confiável em funções serverless do Netlify**: cada função pode rodar em uma instância efêmera e isolada, então cadastros de clientes, pedidos, produtos/cursos criados pelo admin e assinaturas **podem não persistir** entre requisições em produção. Para um deploy real no Netlify, é necessário trocar o banco por um serviço externo persistente (ex.: Netlify DB/Neon Postgres, Turso, Supabase). Posso fazer essa migração — é só pedir.
+
 ## Observações
 
 O checkout de produtos e a cobrança da assinatura são **simulados** nesta demonstração — nenhuma integração de pagamento real está conectada. Para produção, plugue um provedor (Stripe, Mercado Pago, etc.) nos endpoints `src/app/api/pedidos/checkout` e `src/app/api/assinatura`.
