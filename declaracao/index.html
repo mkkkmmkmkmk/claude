@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pra você, meu amor ❤️</title>
+<meta name="description" content="Uma declaração feita só pra você.">
+<meta name="theme-color" content="#1a0b10">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1a0b10; --bg2:#2a1018; --rosa:#ff4d7d; --rosa2:#ff8fab; --ouro:#ffc46b;
+    --texto:#fff3f5; --suave:#d9b8c0; --papel:#f4f1ea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(ellipse at top,#3a1220 0%,var(--bg) 55%) fixed,var(--bg);
+    color:var(--texto);font-family:'Poppins',sans-serif;overflow-x:hidden;
+    -webkit-tap-highlight-color:transparent;
+  }
+  body.travado{overflow:hidden;height:100vh}
+  img{display:block;max-width:100%}
+  section{position:relative;z-index:2;padding:90px 20px;max-width:1100px;margin:0 auto}
+  h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,6vw,3rem);text-align:center;margin-bottom:14px}
+  h2 em{color:var(--rosa2)}
+  .sub{text-align:center;color:var(--suave);font-weight:300;max-width:560px;margin:0 auto 44px;line-height:1.6}
+  .mao{font-family:'Caveat',cursive}
+
+  /* ---------- corações flutuando ---------- */
+  #coracoes{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .cor{position:absolute;bottom:-40px;animation:subir linear forwards;opacity:.0}
+  @keyframes subir{
+    0%{transform:translateY(0) translateX(0) rotate(0);opacity:0}
+    10%{opacity:.75}
+    100%{transform:translateY(-115vh) translateX(var(--dx)) rotate(var(--rot));opacity:0}
+  }
+
+  /* ---------- papel que descasca (intro) ---------- */
+  #papel{
+    position:fixed;inset:0;z-index:50;cursor:grab;touch-action:none;
+    background:
+      radial-gradient(circle at 20% 30%,rgba(0,0,0,.035) 0 1px,transparent 1px) 0 0/7px 7px,
+      radial-gradient(circle at 70% 60%,rgba(0,0,0,.03) 0 1px,transparent 1px) 0 0/11px 11px,
+      linear-gradient(160deg,#fbf9f4,#e9e5dc);
+    color:#3b2a2f;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;
+    clip-path:polygon(0 0,var(--t,100%) 0,var(--b,100%) 100%,0 100%);
+  }
+  #papel h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2rem,8vw,3.6rem);line-height:1.15}
+  #papel h1 em{color:#c2185b}
+  #papel p{margin-top:18px;font-family:'Caveat',cursive;font-size:1.6rem;color:#7a5a62}
+  #papel .dica{
+    position:absolute;right:18px;top:50%;transform:translateY(-50%);
+    font-family:'Caveat',cursive;font-size:1.3rem;color:#a07b84;display:flex;align-items:center;gap:6px;
+    animation:cutuca 1.6s ease-in-out infinite;
+  }
+  @keyframes cutuca{0%,100%{transform:translate(0,-50%)}50%{transform:translate(-10px,-50%)}}
+  #dobra{
+    position:fixed;inset:0;z-index:51;pointer-events:none;
+    clip-path:polygon(var(--t,100%) 0,var(--t2,100%) 0,var(--b2,100%) 100%,var(--b,100%) 100%);
+    background:linear-gradient(90deg,#b9b3a8 0%,#fdfcf9 45%,#e4dfd5 70%,#9c968b 100%);
+    filter:drop-shadow(-12px 0 18px rgba(0,0,0,.45));
+  }
+  #dobra-sombra{position:fixed;inset:0;z-index:49;pointer-events:none;
+    background:linear-gradient(90deg,transparent calc(var(--t,100%) - 6%),rgba(0,0,0,.35) var(--t,100%),transparent calc(var(--t2,100%) + 8%));
+  }
+  .selo{font-size:3.2rem;margin-bottom:16px;animation:bate 1.3s ease-in-out infinite}
+  @keyframes bate{0%,100%{transform:scale(1)}15%{transform:scale(1.18)}30%{transform:scale(1)}45%{transform:scale(1.12)}}
+
+  /* ---------- capa ---------- */
+  #capa{max-width:none;min-height:100vh;min-height:100svh;padding:0;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+  #capa .fundo{position:absolute;inset:0;background:url(fotos/capa.jpg) center/cover;transform:scale(1.08);animation:respira 18s ease-in-out infinite alternate}
+  @keyframes respira{to{transform:scale(1.18) translateY(-2%)}}
+  #capa::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,11,16,.15) 0%,rgba(26,11,16,.35) 45%,var(--bg) 100%)}
+  #capa .conteudo{position:relative;z-index:2;text-align:center;padding:0 22px 12vh}
+  #capa .pra{font-family:'Caveat',cursive;font-size:1.8rem;color:var(--rosa2)}
+  #capa h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,10vw,5rem);line-height:1.05;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+  #capa h1 em{color:var(--rosa2)}
+  #capa .frase{margin-top:16px;font-weight:300;color:#f6dde3;max-width:460px;margin-inline:auto;line-height:1.6}
+  .desce{margin-top:34px;display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:var(--suave);font-size:.8rem;text-decoration:none;letter-spacing:.15em;text-transform:uppercase}
+  .desce span{width:22px;height:36px;border:2px solid var(--suave);border-radius:12px;position:relative}
+  .desce span::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;border-radius:2px;background:var(--rosa2);transform:translateX(-50%);animation:rola 1.6s infinite}
+  @keyframes rola{0%{opacity:1;top:7px}100%{opacity:0;top:20px}}
+
+  /* ---------- contador ---------- */
+  .contador{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:620px;margin:0 auto}
+  .caixa{background:linear-gradient(160deg,rgba(255,77,125,.16),rgba(255,255,255,.03));border:1px solid rgba(255,143,171,.25);border-radius:18px;padding:18px 6px;text-align:center;backdrop-filter:blur(6px)}
+  .caixa b{display:block;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,7vw,2.8rem);color:#fff;font-variant-numeric:tabular-nums}
+  .caixa small{color:var(--suave);font-size:.78rem;text-transform:uppercase;letter-spacing:.12em}
+  .desde{text-align:center;margin-top:22px;font-family:'Caveat',cursive;font-size:1.5rem;color:var(--rosa2)}
+
+  /* ---------- varal de polaroids ---------- */
+  .varal{position:relative;display:flex;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;padding:40px 10vw 50px;margin:0 -20px;scrollbar-width:none}
+  .varal::-webkit-scrollbar{display:none}
+  .varal::before{content:"";position:absolute;left:0;top:30px;height:2px;width:var(--w,100%);background:linear-gradient(90deg,transparent,#8a6a55 5%,#8a6a55 95%,transparent)}
+  .polaroid{flex:0 0 auto;width:min(68vw,270px);scroll-snap-align:center;background:var(--papel);padding:12px 12px 16px;border-radius:3px;
+    box-shadow:0 18px 40px rgba(0,0,0,.45);transform:rotate(var(--r,0deg));transform-origin:50% -12px;cursor:zoom-in;
+    animation:balanca 5s ease-in-out infinite alternate;animation-delay:var(--d,0s);position:relative}
+  .polaroid::before{content:"";position:absolute;top:-22px;left:50%;width:14px;height:34px;transform:translateX(-50%);
+    background:linear-gradient(90deg,#c9a27a,#e8c9a3,#b48b62);border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.4)}
+  @keyframes balanca{from{transform:rotate(calc(var(--r,0deg) - 1.5deg))}to{transform:rotate(calc(var(--r,0deg) + 1.5deg))}}
+  .polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover;background:#ddd}
+  .polaroid p{font-family:'Caveat',cursive;color:#3b2a2f;font-size:1.35rem;text-align:center;margin-top:10px;line-height:1.1}
+  .arraste{text-align:center;color:var(--suave);font-size:.85rem;margin-top:-20px}
+
+  /* ---------- lightbox ---------- */
+  #zoom{position:fixed;inset:0;z-index:60;background:rgba(10,4,6,.92);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px;cursor:zoom-out}
+  #zoom.aberto{display:flex;animation:surge .3s ease}
+  #zoom img{max-height:78vh;max-width:92vw;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  #zoom p{font-family:'Caveat',cursive;font-size:1.7rem;margin-top:14px;text-align:center}
+  @keyframes surge{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+
+  /* ---------- linha do tempo ---------- */
+  .linha{position:relative;max-width:760px;margin:0 auto}
+  .linha::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:linear-gradient(var(--rosa),rgba(255,77,125,.1))}
+  .momento{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;margin-bottom:60px;position:relative}
+  .momento::after{content:"❤";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--rosa);font-size:1.2rem;text-shadow:0 0 14px var(--rosa)}
+  .momento:nth-child(even) .foto{order:2}
+  .momento .foto{border-radius:18px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.5);aspect-ratio:3/4}
+  .momento .foto img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+  .momento:hover .foto img{transform:scale(1.05)}
+  .momento h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:8px;color:var(--rosa2)}
+  .momento p{color:#ecd3d9;font-weight:300;line-height:1.7;font-size:.95rem}
+  @media (max-width:640px){
+    .linha::before{left:14px}
+    .momento{grid-template-columns:1fr;gap:16px;padding-left:38px}
+    .momento::after{left:14px;top:0}
+    .momento:nth-child(even) .foto{order:0}
+  }
+
+  /* ---------- revelar ao rolar ---------- */
+  .revela{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s ease}
+  .revela.visivel{opacity:1;transform:none}
+
+  /* ---------- motivos (cartas que viram) ---------- */
+  .motivos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;max-width:760px;margin:0 auto}
+  .carta-motivo{aspect-ratio:3/4;perspective:900px;cursor:pointer}
+  .carta-motivo .gira{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+  .carta-motivo.virada .gira{transform:rotateY(180deg)}
+  .carta-motivo .face{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px}
+  .carta-motivo .frente{background:linear-gradient(145deg,#ff4d7d,#a8154a);box-shadow:0 10px 26px rgba(168,21,74,.4);flex-direction:column;gap:6px}
+  .carta-motivo .frente b{font-family:'Playfair Display',serif;font-size:2.4rem}
+  .carta-motivo .frente small{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+  .carta-motivo .verso{background:var(--papel);color:#3b2a2f;transform:rotateY(180deg);font-family:'Caveat',cursive;font-size:1.35rem;line-height:1.15}
+
+  /* ---------- carta ---------- */
+  .envelope{max-width:640px;margin:0 auto;background:
+      repeating-linear-gradient(transparent 0 33px,rgba(194,24,91,.13) 33px 34px),var(--papel);
+    color:#3b2a2f;border-radius:6px;padding:40px 30px 44px;box-shadow:0 30px 70px rgba(0,0,0,.55);position:relative;transform:rotate(-.6deg)}
+  .envelope::before{content:"";position:absolute;left:44px;top:0;bottom:0;width:2px;background:rgba(255,77,125,.35)}
+  #texto-carta{font-family:'Caveat',cursive;font-size:1.55rem;line-height:34px;white-space:pre-wrap;min-height:300px;padding-left:24px}
+  #texto-carta .cursor{display:inline-block;width:2px;height:1.2em;background:#c2185b;vertical-align:-3px;animation:pisca 1s steps(1) infinite}
+  @keyframes pisca{50%{opacity:0}}
+  .assinatura{text-align:right;font-family:'Caveat',cursive;font-size:1.8rem;color:#c2185b;margin-top:10px;opacity:0;transition:opacity 1.2s}
+  .assinatura.aparece{opacity:1}
+
+  /* ---------- ligação ---------- */
+  .tela-lig{max-width:340px;margin:0 auto;background:#0b1014;border-radius:38px;padding:34px 22px 28px;text-align:center;border:8px solid #1c1f24;box-shadow:0 30px 70px rgba(0,0,0,.6),inset 0 0 0 1px #2a2e35;position:relative;overflow:hidden}
+  .tela-lig::before{content:"";position:absolute;inset:0;opacity:.07;background:radial-gradient(circle,#fff 1px,transparent 1.5px) 0 0/18px 18px}
+  .tela-lig .nome{font-size:1.3rem;position:relative}
+  .tela-lig .tempo{color:#9aa3ad;font-variant-numeric:tabular-nums;margin-top:2px;position:relative}
+  .avatar{width:170px;height:170px;border-radius:50%;margin:34px auto;position:relative}
+  .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;position:relative;z-index:2}
+  .avatar::before,.avatar::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--rosa);animation:onda 2.4s ease-out infinite}
+  .avatar::after{animation-delay:1.2s}
+  @keyframes onda{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
+  .botoes-lig{display:flex;justify-content:space-around;margin-top:10px;position:relative}
+  .botoes-lig div{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.72rem;color:#c9d1d9}
+  .botoes-lig i{width:54px;height:54px;border-radius:50%;background:#1f252c;display:grid;place-items:center;font-style:normal;font-size:1.3rem}
+  .botoes-lig .fim i{background:#e5173f}
+  .legenda-lig{text-align:center;font-family:'Caveat',cursive;font-size:1.6rem;color:var(--rosa2);margin-top:26px;line-height:1.2}
+
+  /* ---------- pergunta final ---------- */
+  #pergunta{text-align:center;min-height:90vh;display:flex;flex-direction:column;justify-content:center}
+  .pergunta-box{position:relative;height:120px;margin-top:30px}
+  .btn{border:0;border-radius:999px;padding:14px 36px;font:600 1.05rem 'Poppins',sans-serif;cursor:pointer;transition:transform .25s,box-shadow .25s}
+  #sim{background:linear-gradient(135deg,var(--rosa),#c2185b);color:#fff;box-shadow:0 10px 30px rgba(255,77,125,.5);position:absolute;left:50%;top:0;transform:translateX(calc(-100% - 12px)) scale(var(--s,1))}
+  #sim:hover{box-shadow:0 12px 40px rgba(255,77,125,.8)}
+  #nao{background:rgba(255,255,255,.1);color:var(--texto);border:1px solid rgba(255,255,255,.25);position:absolute;left:calc(50% + 12px);top:0;transition:left .35s,top .35s,transform .35s}
+  #resposta{display:none;margin-top:10px}
+  #resposta.mostra{display:block;animation:surge .8s ease}
+  #resposta h3{font-family:'Playfair Display',serif;font-size:clamp(2rem,8vw,3.4rem);color:var(--rosa2)}
+  #resposta p{font-family:'Caveat',cursive;font-size:1.7rem;margin-top:10px}
+  #fogos{position:fixed;inset:0;pointer-events:none;z-index:70}
+
+  /* ---------- música ---------- */
+  #musica{position:fixed;right:16px;bottom:16px;z-index:40;width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,143,171,.4);
+    background:rgba(26,11,16,.75);backdrop-filter:blur(8px);color:var(--rosa2);font-size:1.3rem;cursor:pointer;display:none;place-items:center}
+  #musica.tocando{animation:gira 4s linear infinite}
+  @keyframes gira{to{transform:rotate(360deg)}}
+
+  footer{position:relative;z-index:2;text-align:center;padding:40px 20px 60px;color:var(--suave);font-size:.85rem}
+  footer .mao{font-size:1.4rem;color:var(--rosa2)}
+
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body class="travado">
+
+<!-- ===== Intro: papel que ela descasca, igual a foto ===== -->
+<div id="dobra-sombra"></div>
+<div id="papel" role="button" aria-label="Arraste ou toque para abrir">
+  <div class="selo">💌</div>
+  <h1>Tem uma coisa<br>escondida aqui<br>pra <em>você</em>…</h1>
+  <p>arraste o papel pro lado (ou só toque) ✨</p>
+  <div class="dica">‹‹ puxa</div>
+</div>
+<div id="dobra"></div>
+
+<div id="coracoes"></div>
+<canvas id="fogos"></canvas>
+
+<button id="musica" aria-label="Pausar ou tocar música">♫</button>
+<audio id="audio" loop preload="auto" src="musica.mp3"></audio>
+
+<!-- ===== Capa ===== -->
+<section id="capa">
+  <div class="fundo"></div>
+  <div class="conteudo">
+    <div class="pra">pra <span class="js-nome">meu amor</span>,</div>
+    <h1>Você é o meu<br><em>lugar favorito</em></h1>
+    <p class="frase">Do lado de lá do papel, tudo era cinza. Aí você chegou e o mundo floresceu.</p>
+    <a href="#tempo" class="desce"><span></span>desce</a>
+  </div>
+</section>
+
+<!-- ===== Contador ===== -->
+<section id="tempo" class="revela">
+  <h2>Juntos há <em>exatamente</em>…</h2>
+  <p class="sub">E cada segundo desse relógio foi melhor porque foi com você.</p>
+  <div class="contador">
+    <div class="caixa"><b id="c-anos">0</b><small>anos</small></div>
+    <div class="caixa"><b id="c-meses">0</b><small>meses</small></div>
+    <div class="caixa"><b id="c-dias">0</b><small>dias</small></div>
+    <div class="caixa"><b id="c-horas">0</b><small>horas</small></div>
+    <div class="caixa"><b id="c-min">0</b><small>minutos</small></div>
+    <div class="caixa"><b id="c-seg">0</b><small>segundos</small></div>
+  </div>
+  <p class="desde">desde <span id="data-texto"></span> 💞</p>
+</section>
+
+<!-- ===== Varal de fotos ===== -->
+<section id="fotos">
+  <h2 class="revela">Nosso <em>varal</em> de memórias</h2>
+  <p class="sub revela">Toca numa foto pra ver de pertinho.</p>
+  <div class="varal" id="varal"></div>
+  <p class="arraste">‹ arrasta pro lado ›</p>
+</section>
+
+<!-- ===== Linha do tempo ===== -->
+<section id="momentos">
+  <h2 class="revela">Coisas que eu <em>nunca</em> vou esquecer</h2>
+  <p class="sub revela">Pequenos pedaços da gente que eu guardo com o maior carinho do mundo.</p>
+  <div class="linha">
+    <div class="momento revela">
+      <div class="foto"><img src="fotos/oculos-3.jpg" alt="Nós dois com óculos de flor" loading="lazy"></div>
+      <div><h3>O dia dos óculos de florzinha</h3><p>A gente entrou na loja só pra olhar e saiu com a certeza de que ninguém no mundo faz careta tão bem quanto você. Sua língua pra fora é patrimônio.</p></div>
+    </div>
+    <div class="momento revela">
+      <div class="foto"><img src="fotos/flores-2.jpg" alt="Você sorrindo com o buquê" loading="lazy"></div>
+      <div><h3>Seu sorriso com as flores</h3><p>Eu te dei um buquê, mas quem ganhou o presente fui eu: esse sorriso. Se eu pudesse, te dava flores todo dia só pra ver ele de novo.</p></div>
+    </div>
+    <div class="momento revela">
+      <div class="foto"><img src="fotos/beijo-coberta.jpg" alt="Nosso beijo" loading="lazy"></div>
+      <div><h3>Quando o mundo para</h3><p>Tem beijo que é só beijo. E tem o seu, que faz tudo ao redor sumir. Luz, barulho, gente… nada existe além da gente.</p></div>
+    </div>
+    <div class="momento revela">
+      <div class="foto"><img src="fotos/praca.jpg" alt="A gente na praça de alimentação" loading="lazy"></div>
+      <div><h3>Os rolês simples</h3><p>Praça de alimentação, shopping, sentar e conversar besteira. Com você, até o programa mais comum vira meu dia favorito.</p></div>
+    </div>
+    <div class="momento revela">
+      <div class="foto"><img src="fotos/abraco.jpg" alt="Nosso abraço" loading="lazy"></div>
+      <div><h3>Seu abraço</h3><p>É o único lugar onde eu consigo desligar a cabeça e simplesmente ficar. Meu cantinho no mundo tem o seu cheiro.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Motivos ===== -->
+<section id="motivos">
+  <h2 class="revela">Alguns <em>motivos</em> (dos milhões)</h2>
+  <p class="sub revela">Vira as cartas. Eu teria mais, mas o site não aguentaria.</p>
+  <div class="motivos" id="lista-motivos"></div>
+</section>
+
+<!-- ===== Carta ===== -->
+<section id="carta">
+  <h2 class="revela">Uma <em>carta</em> pra você</h2>
+  <p class="sub revela">Lê com calma. Cada palavra é verdade.</p>
+  <div class="envelope revela">
+    <div id="texto-carta"></div>
+    <div class="assinatura" id="assinatura">— com todo o meu amor, <span class="js-assina">seu amor</span> ❤️</div>
+  </div>
+</section>
+
+<!-- ===== Ligação ===== -->
+<section id="ligacao">
+  <h2 class="revela">Minha <em>ligação</em> favorita</h2>
+  <p class="sub revela">Não importa o dia que eu tive: é só ouvir sua voz que tudo se ajeita.</p>
+  <div class="tela-lig revela">
+    <div class="nome">Amor ❤️</div>
+    <div class="tempo" id="tempo-lig">0:00</div>
+    <div class="avatar"><img src="fotos/ligacao.jpg" alt="Você"></div>
+    <div class="botoes-lig">
+      <div><i>🔊</i>Alto-falante</div>
+      <div><i>📹</i>Vídeo</div>
+      <div class="fim"><i>☎️</i>Nunca encerrar</div>
+    </div>
+  </div>
+  <p class="legenda-lig revela">Eu desligo o telefone,<br>mas nunca desligo de você.</p>
+</section>
+
+<!-- ===== Pergunta ===== -->
+<section id="pergunta">
+  <h2 class="revela">Então, <span class="js-nome">meu amor</span>…</h2>
+  <p class="sub revela" style="font-size:1.15rem;margin-bottom:0">Você aceita continuar escrevendo essa história comigo, <em>pra sempre</em>?</p>
+  <div class="pergunta-box" id="caixa-pergunta">
+    <button class="btn" id="sim">Sim 💖</button>
+    <button class="btn" id="nao">Não</button>
+  </div>
+  <div id="resposta">
+    <h3>Eu sabia! 🥹💞</h3>
+    <p>Você acabou de fazer a pessoa mais feliz do mundo.<br>Te amo hoje, amanhã e em todos os dias que vierem.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="mao">feito com amor, código e saudade</div>
+  <div style="margin-top:6px">de mim, pra você ♥</div>
+</footer>
+
+<div id="zoom"><img alt=""><p></p></div>
+
+<script>
+/* =========================================================
+   ✏️  PERSONALIZE AQUI
+   ========================================================= */
+const CONFIG = {
+  nomeDela: "meu amor",               // ex.: "Júlia"
+  seuNome:  "seu amor",               // como você quer assinar
+  inicio:   "2025-01-01T00:00:00",    // data/hora em que vocês começaram (AAAA-MM-DDTHH:MM:SS)
+  carta:
+`Meu amor,
+
+Se alguém me perguntasse qual foi a melhor coisa que já me aconteceu, eu nem ia precisar pensar: foi você.
+
+Antes de você, os dias eram só dias. Depois de você, eles ganharam cor, cheiro de flor e trilha sonora. Você me faz rir das coisas mais bobas, me acalma quando nada mais consegue e me faz querer ser alguém melhor todo santo dia.
+
+Obrigado por cada careta, cada ligação que era pra durar cinco minutos e durou uma hora, cada abraço que me colocou no lugar e cada beijo que me tirou do chão.
+
+Eu não sei tudo o que o futuro guarda. Mas eu sei com quem eu quero descobrir.
+
+Eu te amo. Muito. Do jeito mais bonito que eu sei.`
+};
+
+const FOTOS = [
+  ["ela.jpg",          "a dona do meu coração"],
+  ["oculos-1.jpg",     "a dupla mais linda do shopping"],
+  ["beijo-coberta.jpg","meu lugar favorito"],
+  ["oculos-2.jpg",     "modelos internacionais 😎"],
+  ["flores-1.jpg",     "flores pra minha flor"],
+  ["oculos-4.jpg",     "rindo de tudo com você"],
+  ["beijo-espelho.jpg","e o mundo sumiu"],
+  ["flores-3.jpg",     "esse sorriso é meu vício"],
+  ["oculos-5.jpg",     "biquinho oficial"],
+  ["praca.jpg",        "qualquer rolê vira o melhor"],
+  ["eu.jpg",           "o seu (convencido) 😏"],
+  ["abraco.jpg",       "meu cantinho no mundo"],
+];
+
+const MOTIVOS = [
+  "Seu sorriso, que desmonta qualquer dia ruim",
+  "Suas caretas (sim, todas elas)",
+  "O jeito que você me abraça como se fosse a última vez",
+  "Sua voz no telefone antes de dormir",
+  "Você me entende sem eu precisar falar",
+  "Porque com você eu sou eu mesmo",
+  "Seu cheiro, que fica em mim",
+  "Porque você é minha melhor amiga também",
+];
+
+/* ========================================================= */
+
+document.querySelectorAll(".js-nome").forEach(e => e.textContent = CONFIG.nomeDela);
+document.querySelectorAll(".js-assina").forEach(e => e.textContent = CONFIG.seuNome);
+
+/* ---------- Papel que descasca ---------- */
+(function(){
+  const papel = document.getElementById("papel"), dobra = document.getElementById("dobra"),
+        sombra = document.getElementById("dobra-sombra"), root = document.documentElement;
+  let p = 0, arrastando = false, x0 = 0, p0 = 0, acabou = false;
+
+  function desenha(v){
+    // borda do "rasgo" levemente inclinada, e a parte dobrada do papel aparece ao lado dela
+    const t = 100 - v * 150, b = 100 - v * 115, larg = Math.min(18, v * 60);
+    [papel, dobra, sombra].forEach(el => {
+      el.style.setProperty("--t", t + "%"); el.style.setProperty("--b", b + "%");
+      el.style.setProperty("--t2", (t + larg) + "%"); el.style.setProperty("--b2", (b + larg * .75) + "%");
+    });
+  }
+  function anima(ate, dur, fim){
+    const de = p, ini = performance.now();
+    (function passo(n){
+      const k = Math.min(1, (n - ini) / dur), e = 1 - Math.pow(1 - k, 3);
+      p = de + (ate - de) * e; desenha(p);
+      if (k < 1) requestAnimationFrame(passo); else fim && fim();
+    })(ini);
+  }
+  function abrir(){
+    if (acabou) return; acabou = true;
+    tocarMusica();
+    anima(1, 1300, () => {
+      papel.remove(); dobra.remove(); sombra.remove();
+      document.body.classList.remove("travado");
+      chuvaDeCoracoes(40);
+    });
+  }
+  papel.addEventListener("pointerdown", e => { arrastando = true; x0 = e.clientX; p0 = p; papel.setPointerCapture(e.pointerId); papel.style.cursor = "grabbing"; });
+  papel.addEventListener("pointermove", e => {
+    if (!arrastando || acabou) return;
+    p = Math.max(0, Math.min(.9, p0 + (x0 - e.clientX) / innerWidth)); desenha(p);
+  });
+  papel.addEventListener("pointerup", e => {
+    arrastando = false; papel.style.cursor = "grab";
+    const moveu = Math.abs(x0 - e.clientX) > 8;
+    if (!moveu || p > .22) abrir(); else anima(0, 400);
+  });
+  desenha(0);
+})();
+
+/* ---------- Música (coloque um arquivo musica.mp3 na mesma pasta) ---------- */
+const audio = document.getElementById("audio"), btnMusica = document.getElementById("musica");
+function tocarMusica(){
+  audio.volume = .6;
+  audio.play().then(() => { btnMusica.style.display = "grid"; btnMusica.classList.add("tocando"); }).catch(() => {});
+}
+btnMusica.onclick = () => {
+  if (audio.paused){ audio.play(); btnMusica.classList.add("tocando"); }
+  else { audio.pause(); btnMusica.classList.remove("tocando"); }
+};
+
+/* ---------- Corações flutuando ---------- */
+const EMOJIS = ["❤️","💖","💕","💗","🌸","✨","💞"];
+const camada = document.getElementById("coracoes");
+function coracao(){
+  const s = document.createElement("span");
+  s.className = "cor"; s.textContent = EMOJIS[Math.random() * EMOJIS.length | 0];
+  const dur = 7 + Math.random() * 8;
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.fontSize = 10 + Math.random() * 18 + "px";
+  s.style.animationDuration = dur + "s";
+  s.style.setProperty("--dx", (Math.random() * 120 - 60) + "px");
+  s.style.setProperty("--rot", (Math.random() * 90 - 45) + "deg");
+  camada.appendChild(s); setTimeout(() => s.remove(), dur * 1000);
+}
+function chuvaDeCoracoes(n){ for (let i = 0; i < n; i++) setTimeout(coracao, i * 60); }
+setInterval(coracao, 900);
+
+/* ---------- Contador ---------- */
+const inicio = new Date(CONFIG.inicio);
+document.getElementById("data-texto").textContent =
+  inicio.toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
+function atualizaContador(){
+  const agora = new Date();
+  let anos = agora.getFullYear() - inicio.getFullYear();
+  let meses = agora.getMonth() - inicio.getMonth();
+  let ref = new Date(inicio); ref.setFullYear(inicio.getFullYear() + anos); ref.setMonth(inicio.getMonth() + meses);
+  if (ref > agora){ meses--; ref = new Date(inicio); ref.setFullYear(inicio.getFullYear() + anos); ref.setMonth(inicio.getMonth() + meses); }
+  if (meses < 0){ anos--; meses += 12; }
+  let resto = Math.max(0, Math.floor((agora - ref) / 1000));
+  const dias = Math.floor(resto / 86400); resto %= 86400;
+  const set = (id, v) => document.getElementById(id).textContent = v;
+  set("c-anos", Math.max(0, anos)); set("c-meses", Math.max(0, meses)); set("c-dias", dias);
+  set("c-horas", Math.floor(resto / 3600)); set("c-min", Math.floor(resto % 3600 / 60)); set("c-seg", resto % 60);
+}
+atualizaContador(); setInterval(atualizaContador, 1000);
+
+/* ---------- Varal + zoom ---------- */
+const varal = document.getElementById("varal"), zoom = document.getElementById("zoom");
+FOTOS.forEach(([arq, legenda], i) => {
+  const f = document.createElement("figure");
+  f.className = "polaroid";
+  f.style.setProperty("--r", (i % 2 ? 1 : -1) * (2 + Math.random() * 3) + "deg");
+  f.style.setProperty("--d", -Math.random() * 5 + "s");
+  f.innerHTML = `<img src="fotos/${arq}" alt="${legenda}" loading="lazy"><p>${legenda}</p>`;
+  f.onclick = () => { zoom.querySelector("img").src = "fotos/" + arq; zoom.querySelector("p").textContent = legenda; zoom.classList.add("aberto"); };
+  varal.appendChild(f);
+});
+const ajustaCorda = () => varal.style.setProperty("--w", varal.scrollWidth + "px");
+addEventListener("load", ajustaCorda); addEventListener("resize", ajustaCorda);
+zoom.onclick = () => zoom.classList.remove("aberto");
+
+/* ---------- Motivos ---------- */
+const lista = document.getElementById("lista-motivos");
+MOTIVOS.forEach((m, i) => {
+  const c = document.createElement("div");
+  c.className = "carta-motivo revela";
+  c.innerHTML = `<div class="gira"><div class="face frente"><b>${i + 1}</b><small>toque</small></div><div class="face verso">${m}</div></div>`;
+  c.onclick = () => { c.classList.toggle("virada"); if (c.classList.contains("virada")) chuvaDeCoracoes(4); };
+  lista.appendChild(c);
+});
+
+/* ---------- Revelar ao rolar ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("visivel"); io.unobserve(e.target); }
+}), { threshold: .15 });
+document.querySelectorAll(".revela").forEach(el => io.observe(el));
+
+/* ---------- Carta digitando ---------- */
+(function(){
+  const alvo = document.getElementById("texto-carta"), assin = document.getElementById("assinatura");
+  let comecou = false;
+  new IntersectionObserver((es, o) => {
+    if (!es[0].isIntersecting || comecou) return;
+    comecou = true; o.disconnect();
+    let i = 0; const txt = CONFIG.carta, cursor = '<span class="cursor"></span>';
+    const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    (function digita(){
+      alvo.innerHTML = esc(txt.slice(0, i)) + cursor;
+      if (i < txt.length){
+        const c = txt[i++];
+        setTimeout(digita, c === "\n" ? 260 : /[.,!?]/.test(c) ? 180 : 28);
+      } else { alvo.innerHTML = esc(txt); assin.classList.add("aparece"); }
+    })();
+  }, { threshold: .3 }).observe(alvo);
+})();
+
+/* ---------- Tempo da ligação ---------- */
+(function(){
+  let s = 0; const el = document.getElementById("tempo-lig");
+  setInterval(() => { s++; el.textContent = Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }, 1000);
+})();
+
+/* ---------- Pergunta: o "Não" foge ---------- */
+(function(){
+  const nao = document.getElementById("nao"), sim = document.getElementById("sim"), box = document.getElementById("caixa-pergunta");
+  const frases = ["Não", "Tem certeza?", "Pensa bem 🥺", "Última chance!", "Vai partir meu coração 💔", "Não adianta fugir 😏", "Só existe o sim 💖"];
+  let n = 0, escala = 1;
+  function foge(e){
+    e && e.preventDefault();
+    n++; escala = Math.min(2.2, escala + .15);
+    sim.style.setProperty("--s", escala);
+    nao.textContent = frases[Math.min(n, frases.length - 1)];
+    const r = box.getBoundingClientRect(), w = nao.offsetWidth, h = nao.offsetHeight;
+    const x = Math.random() * (innerWidth - w - 20) + 10 - r.left, y = (Math.random() * 2 - 1) * 90;
+    nao.style.left = x + "px"; nao.style.top = y + "px";
+    nao.style.transform = `scale(${Math.max(.5, 1 - n * .07)})`;
+  }
+  nao.addEventListener("mouseenter", foge);
+  nao.addEventListener("touchstart", foge, { passive: false });
+  nao.addEventListener("click", foge);
+  sim.addEventListener("click", () => {
+    box.style.display = "none";
+    document.getElementById("resposta").classList.add("mostra");
+    chuvaDeCoracoes(80); fogos();
+  });
+})();
+
+/* ---------- Fogos de coração ---------- */
+function fogos(){
+  const cv = document.getElementById("fogos"), ctx = cv.getContext("2d");
+  const dpr = devicePixelRatio || 1;
+  cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; ctx.scale(dpr, dpr);
+  const cores = ["#ff4d7d", "#ff8fab", "#ffc46b", "#ffffff", "#c2185b"], ps = [];
+  function explode(cx, cy){
+    for (let t = 0; t < Math.PI * 2; t += .09){
+      // curva do coração
+      const hx = 16 * Math.pow(Math.sin(t), 3),
+            hy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+      const v = .28 + Math.random() * .04;
+      ps.push({ x: cx, y: cy, vx: hx * v, vy: hy * v, vida: 1, cor: cores[Math.random() * cores.length | 0] });
+    }
+  }
+  let rodadas = 0;
+  const lanca = setInterval(() => {
+    explode(innerWidth * (.2 + Math.random() * .6), innerHeight * (.2 + Math.random() * .4));
+    if (++rodadas >= 7) clearInterval(lanca);
+  }, 450);
+  (function loop(){
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    for (let i = ps.length - 1; i >= 0; i--){
+      const q = ps[i];
+      q.x += q.vx; q.y += q.vy; q.vy += .035; q.vx *= .985; q.vy *= .985; q.vida -= .011;
+      if (q.vida <= 0){ ps.splice(i, 1); continue; }
+      ctx.globalAlpha = q.vida; ctx.fillStyle = q.cor;
+      ctx.beginPath(); ctx.arc(q.x, q.y, 2.4, 0, Math.PI * 2); ctx.fill();
+    }
+    if (ps.length || rodadas < 7) requestAnimationFrame(loop); else ctx.clearRect(0, 0, innerWidth, innerHeight);
+  })();
+}
+</script>
+</body>
+</html>
