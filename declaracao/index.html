@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pra você, meu amor ❤️</title>
+<title>Pra você, Thawane ❤️</title>
 <meta name="description" content="Uma declaração feita só pra você.">
 <meta name="theme-color" content="#1a0b10">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
@@ -86,7 +86,8 @@
   @keyframes rola{0%{opacity:1;top:7px}100%{opacity:0;top:20px}}
 
   /* ---------- contador ---------- */
-  .contador{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:620px;margin:0 auto}
+  .contador{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:720px;margin:0 auto}
+  @media (max-width:560px){.contador{grid-template-columns:repeat(2,1fr)}}
   .caixa{background:linear-gradient(160deg,rgba(255,77,125,.16),rgba(255,255,255,.03));border:1px solid rgba(255,143,171,.25);border-radius:18px;padding:18px 6px;text-align:center;backdrop-filter:blur(6px)}
   .caixa b{display:block;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,7vw,2.8rem);color:#fff;font-variant-numeric:tabular-nums}
   .caixa small{color:var(--suave);font-size:.78rem;text-transform:uppercase;letter-spacing:.12em}
@@ -173,17 +174,15 @@
   .botoes-lig .fim i{background:#e5173f}
   .legenda-lig{text-align:center;font-family:'Caveat',cursive;font-size:1.6rem;color:var(--rosa2);margin-top:26px;line-height:1.2}
 
-  /* ---------- pergunta final ---------- */
-  #pergunta{text-align:center;min-height:90vh;display:flex;flex-direction:column;justify-content:center}
-  .pergunta-box{position:relative;height:120px;margin-top:30px}
-  .btn{border:0;border-radius:999px;padding:14px 36px;font:600 1.05rem 'Poppins',sans-serif;cursor:pointer;transition:transform .25s,box-shadow .25s}
-  #sim{background:linear-gradient(135deg,var(--rosa),#c2185b);color:#fff;box-shadow:0 10px 30px rgba(255,77,125,.5);position:absolute;left:50%;top:0;transform:translateX(calc(-100% - 12px)) scale(var(--s,1))}
-  #sim:hover{box-shadow:0 12px 40px rgba(255,77,125,.8)}
-  #nao{background:rgba(255,255,255,.1);color:var(--texto);border:1px solid rgba(255,255,255,.25);position:absolute;left:calc(50% + 12px);top:0;transition:left .35s,top .35s,transform .35s}
-  #resposta{display:none;margin-top:10px}
-  #resposta.mostra{display:block;animation:surge .8s ease}
-  #resposta h3{font-family:'Playfair Display',serif;font-size:clamp(2rem,8vw,3.4rem);color:var(--rosa2)}
-  #resposta p{font-family:'Caveat',cursive;font-size:1.7rem;margin-top:10px}
+  /* ---------- final: coração ---------- */
+  #final{text-align:center;min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+  #coracao-grande{font-size:clamp(6rem,30vw,9rem);background:none;border:0;cursor:pointer;line-height:1;margin:20px 0 10px;
+    filter:drop-shadow(0 0 30px rgba(255,77,125,.6));animation:bate 1.3s ease-in-out infinite;transition:transform .15s}
+  #coracao-grande:active{transform:scale(.9)}
+  #frase-final{font-family:'Caveat',cursive;font-size:1.8rem;color:var(--rosa2);min-height:2.4em;max-width:520px;line-height:1.2;transition:opacity .3s}
+  #te-amo{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,10vw,4.2rem);margin-top:18px;opacity:0;transform:scale(.8);transition:all 1s}
+  #te-amo.aparece{opacity:1;transform:none}
+  #te-amo em{color:var(--rosa2)}
   #fogos{position:fixed;inset:0;pointer-events:none;z-index:70}
 
   /* ---------- música ---------- */
@@ -220,26 +219,24 @@
 <section id="capa">
   <div class="fundo"></div>
   <div class="conteudo">
-    <div class="pra">pra <span class="js-nome">meu amor</span>,</div>
+    <div class="pra">pra <span class="js-nome">Thawane</span>,</div>
     <h1>Você é o meu<br><em>lugar favorito</em></h1>
-    <p class="frase">Do lado de lá do papel, tudo era cinza. Aí você chegou e o mundo floresceu.</p>
+    <p class="frase">Antes de você, tudo era meio cinza. Aí você chegou e meu mundo ficou cheio de cor.</p>
     <a href="#tempo" class="desce"><span></span>desce</a>
   </div>
 </section>
 
 <!-- ===== Contador ===== -->
 <section id="tempo" class="revela">
-  <h2>Juntos há <em>exatamente</em>…</h2>
-  <p class="sub">E cada segundo desse relógio foi melhor porque foi com você.</p>
+  <h2>Tudo começou <em>há</em>…</h2>
+  <p class="sub">Desde a primeira conversa, cada segundo ficou melhor porque foi com você.</p>
   <div class="contador">
-    <div class="caixa"><b id="c-anos">0</b><small>anos</small></div>
-    <div class="caixa"><b id="c-meses">0</b><small>meses</small></div>
     <div class="caixa"><b id="c-dias">0</b><small>dias</small></div>
     <div class="caixa"><b id="c-horas">0</b><small>horas</small></div>
     <div class="caixa"><b id="c-min">0</b><small>minutos</small></div>
     <div class="caixa"><b id="c-seg">0</b><small>segundos</small></div>
   </div>
-  <p class="desde">desde <span id="data-texto"></span> 💞</p>
+  <p class="desde">desde aquele “oi” em <span id="data-texto"></span> 💞</p>
 </section>
 
 <!-- ===== Varal de fotos ===== -->
@@ -257,7 +254,7 @@
   <div class="linha">
     <div class="momento revela">
       <div class="foto"><img src="fotos/oculos-3.jpg" alt="Nós dois com óculos de flor" loading="lazy"></div>
-      <div><h3>O dia dos óculos de florzinha</h3><p>A gente entrou na loja só pra olhar e saiu com a certeza de que ninguém no mundo faz careta tão bem quanto você. Sua língua pra fora é patrimônio.</p></div>
+      <div><h3>O dia dos óculos de florzinha</h3><p>A gente entrou na loja só pra olhar e saiu com a certeza de que ninguém no mundo faz careta tão bem quanto você. E essa sua língua pra fora é a coisa mais fofa do mundo.</p></div>
     </div>
     <div class="momento revela">
       <div class="foto"><img src="fotos/flores-2.jpg" alt="Você sorrindo com o buquê" loading="lazy"></div>
@@ -265,7 +262,7 @@
     </div>
     <div class="momento revela">
       <div class="foto"><img src="fotos/beijo-coberta.jpg" alt="Nosso beijo" loading="lazy"></div>
-      <div><h3>Quando o mundo para</h3><p>Tem beijo que é só beijo. E tem o seu, que faz tudo ao redor sumir. Luz, barulho, gente… nada existe além da gente.</p></div>
+      <div><h3>Quando o mundo para</h3><p>Quando eu te beijo, parece que o mundo para. Não existe mais barulho, nem gente, nem nada. Só a gente.</p></div>
     </div>
     <div class="momento revela">
       <div class="foto"><img src="fotos/praca.jpg" alt="A gente na praça de alimentação" loading="lazy"></div>
@@ -273,7 +270,7 @@
     </div>
     <div class="momento revela">
       <div class="foto"><img src="fotos/abraco.jpg" alt="Nosso abraço" loading="lazy"></div>
-      <div><h3>Seu abraço</h3><p>É o único lugar onde eu consigo desligar a cabeça e simplesmente ficar. Meu cantinho no mundo tem o seu cheiro.</p></div>
+      <div><h3>Seu abraço</h3><p>É o lugar onde eu fico em paz. Meu cantinho preferido no mundo tem o seu cheiro.</p></div>
     </div>
   </div>
 </section>
@@ -291,7 +288,7 @@
   <p class="sub revela">Lê com calma. Cada palavra é verdade.</p>
   <div class="envelope revela">
     <div id="texto-carta"></div>
-    <div class="assinatura" id="assinatura">— com todo o meu amor, <span class="js-assina">seu amor</span> ❤️</div>
+    <div class="assinatura" id="assinatura">— com todo o meu amor, <span class="js-assina">Nycollas</span> ❤️</div>
   </div>
 </section>
 
@@ -312,18 +309,13 @@
   <p class="legenda-lig revela">Eu desligo o telefone,<br>mas nunca desligo de você.</p>
 </section>
 
-<!-- ===== Pergunta ===== -->
-<section id="pergunta">
-  <h2 class="revela">Então, <span class="js-nome">meu amor</span>…</h2>
-  <p class="sub revela" style="font-size:1.15rem;margin-bottom:0">Você aceita continuar escrevendo essa história comigo, <em>pra sempre</em>?</p>
-  <div class="pergunta-box" id="caixa-pergunta">
-    <button class="btn" id="sim">Sim 💖</button>
-    <button class="btn" id="nao">Não</button>
-  </div>
-  <div id="resposta">
-    <h3>Eu sabia! 🥹💞</h3>
-    <p>Você acabou de fazer a pessoa mais feliz do mundo.<br>Te amo hoje, amanhã e em todos os dias que vierem.</p>
-  </div>
+<!-- ===== Final ===== -->
+<section id="final">
+  <h2 class="revela">Pra terminar, <span class="js-nome">Thawane</span>…</h2>
+  <p class="sub revela" style="margin-bottom:0">Toca no coração. Quantas vezes quiser.</p>
+  <button id="coracao-grande" aria-label="Tocar no coração">❤️</button>
+  <div id="frase-final"></div>
+  <div id="te-amo">Eu te <em>amo</em>.</div>
 </section>
 
 <footer>
@@ -338,21 +330,21 @@
    ✏️  PERSONALIZE AQUI
    ========================================================= */
 const CONFIG = {
-  nomeDela: "meu amor",               // ex.: "Júlia"
-  seuNome:  "seu amor",               // como você quer assinar
-  inicio:   "2025-01-01T00:00:00",    // data/hora em que vocês começaram (AAAA-MM-DDTHH:MM:SS)
+  nomeDela: "Thawane",
+  seuNome:  "Nycollas",
+  inicio:   "2025-09-14T18:00:00-03:00", // primeira conversa (horário de Brasília)
   carta:
-`Meu amor,
+`Thawane, meu amor,
 
-Se alguém me perguntasse qual foi a melhor coisa que já me aconteceu, eu nem ia precisar pensar: foi você.
+Tudo começou com uma conversa no dia 14 de setembro, às 18h. Eu não fazia ideia de que ali estava começando a melhor parte da minha vida.
 
-Antes de você, os dias eram só dias. Depois de você, eles ganharam cor, cheiro de flor e trilha sonora. Você me faz rir das coisas mais bobas, me acalma quando nada mais consegue e me faz querer ser alguém melhor todo santo dia.
+Você deixa meus dias mais leves e mais felizes. Eu amo o seu sorriso, as suas caretas, a sua voz no telefone e o seu abraço, que é o meu lugar preferido no mundo.
 
-Obrigado por cada careta, cada ligação que era pra durar cinco minutos e durou uma hora, cada abraço que me colocou no lugar e cada beijo que me tirou do chão.
+Obrigado por cada risada, cada ligação que era pra ser rápida e durou horas, e cada beijo que me deixa bobo.
 
-Eu não sei tudo o que o futuro guarda. Mas eu sei com quem eu quero descobrir.
+Eu não sei tudo o que vai acontecer daqui pra frente, mas eu sei que quero viver tudo isso do seu lado.
 
-Eu te amo. Muito. Do jeito mais bonito que eu sei.`
+Eu te amo muito. Hoje, amanhã e todos os dias.`
 };
 
 const FOTOS = [
@@ -461,19 +453,14 @@ setInterval(coracao, 900);
 /* ---------- Contador ---------- */
 const inicio = new Date(CONFIG.inicio);
 document.getElementById("data-texto").textContent =
-  inicio.toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
+  inicio.toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" }) + ", às 18h";
 function atualizaContador(){
-  const agora = new Date();
-  let anos = agora.getFullYear() - inicio.getFullYear();
-  let meses = agora.getMonth() - inicio.getMonth();
-  let ref = new Date(inicio); ref.setFullYear(inicio.getFullYear() + anos); ref.setMonth(inicio.getMonth() + meses);
-  if (ref > agora){ meses--; ref = new Date(inicio); ref.setFullYear(inicio.getFullYear() + anos); ref.setMonth(inicio.getMonth() + meses); }
-  if (meses < 0){ anos--; meses += 12; }
-  let resto = Math.max(0, Math.floor((agora - ref) / 1000));
-  const dias = Math.floor(resto / 86400); resto %= 86400;
+  let resto = Math.max(0, Math.floor((Date.now() - inicio) / 1000));
   const set = (id, v) => document.getElementById(id).textContent = v;
-  set("c-anos", Math.max(0, anos)); set("c-meses", Math.max(0, meses)); set("c-dias", dias);
-  set("c-horas", Math.floor(resto / 3600)); set("c-min", Math.floor(resto % 3600 / 60)); set("c-seg", resto % 60);
+  set("c-dias", Math.floor(resto / 86400)); resto %= 86400;
+  set("c-horas", Math.floor(resto / 3600));
+  set("c-min", Math.floor(resto % 3600 / 60));
+  set("c-seg", resto % 60);
 }
 atualizaContador(); setInterval(atualizaContador, 1000);
 
@@ -533,28 +520,23 @@ document.querySelectorAll(".revela").forEach(el => io.observe(el));
   setInterval(() => { s++; el.textContent = Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }, 1000);
 })();
 
-/* ---------- Pergunta: o "Não" foge ---------- */
+/* ---------- Final: coração que fala ---------- */
 (function(){
-  const nao = document.getElementById("nao"), sim = document.getElementById("sim"), box = document.getElementById("caixa-pergunta");
-  const frases = ["Não", "Tem certeza?", "Pensa bem 🥺", "Última chance!", "Vai partir meu coração 💔", "Não adianta fugir 😏", "Só existe o sim 💖"];
-  let n = 0, escala = 1;
-  function foge(e){
-    e && e.preventDefault();
-    n++; escala = Math.min(2.2, escala + .15);
-    sim.style.setProperty("--s", escala);
-    nao.textContent = frases[Math.min(n, frases.length - 1)];
-    const r = box.getBoundingClientRect(), w = nao.offsetWidth, h = nao.offsetHeight;
-    const x = Math.random() * (innerWidth - w - 20) + 10 - r.left, y = (Math.random() * 2 - 1) * 90;
-    nao.style.left = x + "px"; nao.style.top = y + "px";
-    nao.style.transform = `scale(${Math.max(.5, 1 - n * .07)})`;
-  }
-  nao.addEventListener("mouseenter", foge);
-  nao.addEventListener("touchstart", foge, { passive: false });
-  nao.addEventListener("click", foge);
-  sim.addEventListener("click", () => {
-    box.style.display = "none";
-    document.getElementById("resposta").classList.add("mostra");
-    chuvaDeCoracoes(80); fogos();
+  const btn = document.getElementById("coracao-grande"), frase = document.getElementById("frase-final"), teAmo = document.getElementById("te-amo");
+  const FRASES = [
+    "Você é a melhor parte do meu dia.",
+    "Eu penso em você o tempo todo.",
+    "Com você, tudo fica mais bonito.",
+    "Seu sorriso é o meu favorito.",
+    "Obrigado por existir na minha vida.",
+    "Eu escolheria você de novo, todas as vezes.",
+  ];
+  let i = 0;
+  btn.addEventListener("click", () => {
+    chuvaDeCoracoes(12);
+    frase.style.opacity = 0;
+    setTimeout(() => { frase.textContent = FRASES[i % FRASES.length]; frase.style.opacity = 1; i++; }, 200);
+    if (i === FRASES.length - 1){ teAmo.classList.add("aparece"); chuvaDeCoracoes(60); fogos(); }
   });
 })();
 
