@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thawane & Nycollas ❤️</title>
+<meta name="description" content="Um site feito com amor, só pra você.">
+<meta name="theme-color" content="#ffe4ea">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fundo:#fff4f6; --fundo2:#ffe4ea; --rosa:#e8466f; --rosa2:#f78ca5; --rosa3:#ffd1dc;
+    --texto:#5a2d3a; --suave:#9a6b77; --branco:#fff; --sombra:0 12px 34px rgba(232,70,111,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Quicksand',sans-serif;color:var(--texto);overflow-x:hidden;
+    background:linear-gradient(180deg,var(--fundo2) 0%,var(--fundo) 30%,#fff 60%,var(--fundo2) 100%);
+    -webkit-tap-highlight-color:transparent;
+  }
+  body.travado{overflow:hidden;height:100vh}
+  img{display:block;max-width:100%}
+  main{position:relative;z-index:2;max-width:480px;margin:0 auto;padding:0 16px 40px}
+  .bloco{margin-top:64px}
+  .titulo{font-family:'Dancing Script',cursive;font-size:2.4rem;text-align:center;color:var(--rosa);line-height:1.1}
+  .legenda{text-align:center;color:var(--suave);font-size:.95rem;margin:8px auto 24px;max-width:340px;line-height:1.5}
+  .card{background:var(--branco);border-radius:26px;box-shadow:var(--sombra);padding:22px}
+
+  /* ---------- pétalas / corações caindo ---------- */
+  #chuva{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .gota{position:absolute;top:-40px;animation:cair linear forwards;opacity:.85}
+  @keyframes cair{
+    to{transform:translateY(110vh) translateX(var(--dx)) rotate(var(--rot));opacity:.2}
+  }
+
+  /* ---------- envelope inicial ---------- */
+  #abertura{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:130px;
+    background:radial-gradient(circle at 50% 40%,#fff 0%,var(--fundo2) 70%);transition:opacity .8s,visibility .8s;padding:20px}
+  #abertura.some{opacity:0;visibility:hidden}
+  #abertura .para{font-family:'Dancing Script',cursive;font-size:2.2rem;color:var(--rosa);text-align:center;line-height:1.2}
+  #abertura .toque{color:var(--suave);font-weight:600;letter-spacing:.08em;font-size:.9rem;animation:pulsa 1.6s ease-in-out infinite}
+  @keyframes pulsa{50%{opacity:.35}}
+  .envelope{position:relative;width:280px;height:180px;cursor:pointer;perspective:800px}
+  .envelope .corpo{position:absolute;inset:0;background:#f7a1b5;border-radius:10px;box-shadow:0 20px 40px rgba(232,70,111,.3)}
+  .envelope .bilhete{position:absolute;left:18px;right:18px;top:14px;height:150px;background:#fff;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--rosa);
+    transition:transform .9s cubic-bezier(.3,1.4,.5,1) .45s;z-index:1}
+  .envelope .frente{position:absolute;inset:0;border-radius:10px;z-index:2;
+    background:linear-gradient(to top right,#f58aa3 50%,transparent 50.5%) left/50% 100% no-repeat,
+               linear-gradient(to top left,#f693ab 50%,transparent 50.5%) right/50% 100% no-repeat}
+  .envelope .aba{position:absolute;left:0;right:0;top:0;height:110px;z-index:3;transform-origin:top;transition:transform .6s ease,z-index 0s .3s;
+    background:linear-gradient(to bottom,#fbb6c6,#f58aa3);clip-path:polygon(0 0,100% 0,50% 100%);border-radius:10px 10px 0 0}
+  .envelope .selo{position:absolute;left:50%;top:92px;transform:translate(-50%,-50%);z-index:4;width:48px;height:48px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,#ff6f91,#c21d4c);display:grid;place-items:center;color:#fff;font-size:1.3rem;
+    box-shadow:0 4px 10px rgba(0,0,0,.2);transition:opacity .3s}
+  .envelope.aberto .aba{transform:rotateX(180deg);z-index:0}
+  .envelope.aberto .selo{opacity:0}
+  .envelope.aberto .bilhete{transform:translateY(-70px)}
+
+  /* ---------- topo: fotos passando + nomes ---------- */
+  .topo{padding-top:28px;text-align:center}
+  .slides{position:relative;aspect-ratio:4/5;border-radius:30px;overflow:hidden;box-shadow:0 20px 50px rgba(232,70,111,.28);border:6px solid #fff}
+  .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1.2s ease,transform 6s ease}
+  .slides img.ativa{opacity:1;transform:scale(1)}
+  .pontos{display:flex;justify-content:center;gap:6px;margin-top:12px}
+  .pontos span{width:7px;height:7px;border-radius:99px;background:var(--rosa3);transition:all .4s}
+  .pontos span.ativa{width:22px;background:var(--rosa)}
+  .nomes{font-family:'Dancing Script',cursive;font-size:clamp(2rem,10vw,3.2rem);color:var(--rosa);margin-top:18px;line-height:1.1;white-space:nowrap}
+  .nomes .cor{display:inline-block;animation:bate 1.3s ease-in-out infinite;font-size:.7em;vertical-align:middle}
+  @keyframes bate{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
+  .frase-topo{color:var(--suave);margin-top:6px;font-weight:500}
+
+  /* ---------- contador ---------- */
+  .contador{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .num{background:linear-gradient(160deg,#fff,#fff0f3);border:1px solid var(--rosa3);border-radius:18px;padding:14px 2px;text-align:center}
+  .num b{display:block;font-size:1.8rem;font-weight:700;color:var(--rosa);font-variant-numeric:tabular-nums;line-height:1.1}
+  .num small{font-size:.68rem;font-weight:600;color:var(--suave);text-transform:uppercase;letter-spacing:.06em}
+  .desde{text-align:center;margin-top:14px;color:var(--suave);font-size:.9rem}
+  .desde b{color:var(--rosa)}
+
+  /* ---------- varal ---------- */
+  .varal{position:relative;display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:36px 24px 30px;margin:0 -16px;scrollbar-width:none}
+  .varal::-webkit-scrollbar{display:none}
+  .varal::before{content:"";position:absolute;left:0;top:24px;height:2px;width:var(--w,100%);background:#c99a7e;border-radius:2px}
+  .polaroid{flex:0 0 auto;width:210px;scroll-snap-align:center;background:#fff;padding:10px 10px 14px;border-radius:4px;position:relative;cursor:zoom-in;
+    box-shadow:0 12px 26px rgba(90,45,58,.18);transform-origin:50% -14px;animation:balanca 4.5s ease-in-out infinite alternate;animation-delay:var(--d)}
+  .polaroid::before{content:"";position:absolute;top:-20px;left:50%;width:12px;height:30px;transform:translateX(-50%);border-radius:3px;
+    background:linear-gradient(90deg,#f58aa3,#fbb6c6,#e8466f)}
+  @keyframes balanca{from{transform:rotate(calc(var(--r) - 1.5deg))}to{transform:rotate(calc(var(--r) + 1.5deg))}}
+  .polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover;background:#f3e6e9}
+  .polaroid p{font-family:'Caveat',cursive;font-size:1.25rem;text-align:center;margin-top:8px;color:var(--texto);line-height:1.1}
+  .arraste{text-align:center;color:var(--suave);font-size:.8rem}
+
+  #zoom{position:fixed;inset:0;z-index:60;background:rgba(90,45,58,.85);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px;cursor:zoom-out}
+  #zoom.aberto{display:flex;animation:surge .3s ease}
+  #zoom img{max-height:78vh;max-width:92vw;border-radius:16px;border:6px solid #fff}
+  #zoom p{font-family:'Caveat',cursive;font-size:1.7rem;margin-top:12px;color:#fff;text-align:center}
+  @keyframes surge{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+
+  /* ---------- linha do tempo ---------- */
+  .linha{position:relative;padding-left:30px}
+  .linha::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--rosa),var(--rosa3))}
+  .momento{position:relative;margin-bottom:26px}
+  .momento::before{content:"♥";position:absolute;left:-30px;top:14px;width:20px;height:20px;border-radius:50%;background:#fff;
+    display:grid;place-items:center;color:var(--rosa);font-size:.75rem;box-shadow:0 0 0 3px var(--rosa3)}
+  .momento .card{padding:0;overflow:hidden}
+  .momento img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 30%}
+  .momento .txt{padding:16px 18px 18px}
+  .momento h3{font-size:1.1rem;color:var(--rosa);margin-bottom:6px}
+  .momento p{font-size:.95rem;line-height:1.6}
+
+  /* ---------- motivos ---------- */
+  .motivos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .motivo{aspect-ratio:1;perspective:800px;cursor:pointer}
+  .motivo .gira{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+  .motivo.virado .gira{transform:rotateY(180deg)}
+  .motivo .face{position:absolute;inset:0;border-radius:22px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px}
+  .motivo .frente{background:linear-gradient(145deg,var(--rosa2),var(--rosa));color:#fff;box-shadow:var(--sombra)}
+  .motivo .frente b{font-size:2rem}
+  .motivo .frente small{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.9}
+  .motivo .verso{background:#fff;transform:rotateY(180deg);font-weight:600;font-size:.95rem;line-height:1.4;box-shadow:var(--sombra);border:2px solid var(--rosa3)}
+
+  /* ---------- carta ---------- */
+  .carta{background:repeating-linear-gradient(transparent 0 31px,#f8d3dc 31px 32px),#fffdfb;border-radius:18px;box-shadow:var(--sombra);padding:26px 22px 30px;position:relative}
+  .carta::before{content:"💌";position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:2rem}
+  #texto-carta{font-family:'Caveat',cursive;font-size:1.45rem;line-height:32px;white-space:pre-wrap;min-height:320px}
+  #texto-carta .cursor{display:inline-block;width:2px;height:1.1em;background:var(--rosa);vertical-align:-3px;animation:pulsa 1s steps(1) infinite}
+  .assinatura{text-align:right;font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--rosa);margin-top:8px;opacity:0;transition:opacity 1.2s}
+  .assinatura.aparece{opacity:1}
+
+  /* ---------- ligação ---------- */
+  .celular{max-width:290px;margin:0 auto;background:#0b1014;border-radius:40px;padding:30px 20px 26px;text-align:center;color:#fff;border:8px solid #2b2f36;box-shadow:0 26px 60px rgba(90,45,58,.35);position:relative;overflow:hidden}
+  .celular::before{content:"";position:absolute;inset:0;opacity:.07;background:radial-gradient(circle,#fff 1px,transparent 1.5px) 0 0/18px 18px}
+  .celular .quem{font-size:1.25rem;font-weight:600;position:relative}
+  .celular .tempo{color:#9aa3ad;margin-top:2px;font-variant-numeric:tabular-nums;position:relative}
+  .avatar{width:150px;height:150px;margin:30px auto;position:relative}
+  .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;position:relative;z-index:2}
+  .avatar::before,.avatar::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--rosa2);animation:onda 2.4s ease-out infinite}
+  .avatar::after{animation-delay:1.2s}
+  @keyframes onda{to{transform:scale(1.6);opacity:0}}
+  .teclas{display:flex;justify-content:space-around;position:relative}
+  .teclas div{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.7rem;color:#c9d1d9}
+  .teclas i{width:50px;height:50px;border-radius:50%;background:#1f252c;display:grid;place-items:center;font-style:normal;font-size:1.2rem}
+  .teclas .fim i{background:#e5173f}
+  .frase-lig{text-align:center;font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--rosa);margin-top:22px;line-height:1.2}
+
+  /* ---------- final ---------- */
+  .final{text-align:center;min-height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+  #coracao{font-size:7rem;background:none;border:0;cursor:pointer;line-height:1;margin:14px 0;animation:bate 1.3s ease-in-out infinite;filter:drop-shadow(0 10px 24px rgba(232,70,111,.4))}
+  #frase-final{font-weight:600;font-size:1.15rem;color:var(--texto);min-height:3em;max-width:320px;transition:opacity .3s}
+  #te-amo{font-family:'Dancing Script',cursive;font-size:3.4rem;color:var(--rosa);opacity:0;transform:scale(.8);transition:all 1s}
+  #te-amo.aparece{opacity:1;transform:none}
+  #fogos{position:fixed;inset:0;pointer-events:none;z-index:70}
+
+  .revela{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
+  .revela.visivel{opacity:1;transform:none}
+
+  #musica{position:fixed;right:14px;bottom:14px;z-index:40;width:48px;height:48px;border-radius:50%;border:0;background:#fff;color:var(--rosa);
+    box-shadow:var(--sombra);font-size:1.2rem;cursor:pointer;display:none;place-items:center}
+  #musica.tocando{animation:gira 4s linear infinite}
+  @keyframes gira{to{transform:rotate(360deg)}}
+
+  footer{text-align:center;color:var(--suave);font-size:.85rem;padding:10px 0 50px;position:relative;z-index:2}
+  footer b{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--rosa);font-weight:700;display:block}
+
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body class="travado">
+
+<!-- ===== Envelope ===== -->
+<div id="abertura">
+  <div class="para">Para: Thawane<br><small style="font-size:.65em">De: Nycollas</small></div>
+  <div class="envelope" id="envelope" role="button" aria-label="Abrir envelope">
+    <div class="corpo"></div>
+    <div class="bilhete">te amo 💗</div>
+    <div class="frente"></div>
+    <div class="aba"></div>
+    <div class="selo">♥</div>
+  </div>
+  <div class="toque">TOQUE NO ENVELOPE</div>
+</div>
+
+<div id="chuva"></div>
+<canvas id="fogos"></canvas>
+<button id="musica" aria-label="Pausar ou tocar música">♫</button>
+<audio id="audio" loop preload="auto" src="musica.mp3"></audio>
+
+<main>
+
+  <!-- ===== Topo ===== -->
+  <section class="topo">
+    <div class="slides" id="slides"></div>
+    <div class="pontos" id="pontos"></div>
+    <h1 class="nomes">Thawane <span class="cor">❤️</span> Nycollas</h1>
+    <p class="frase-topo">Você é o meu lugar favorito.</p>
+  </section>
+
+  <!-- ===== Contador ===== -->
+  <section class="bloco revela">
+    <h2 class="titulo">Tudo começou há…</h2>
+    <p class="legenda">E esse relógio não para. Igual ao que eu sinto por você.</p>
+    <div class="card">
+      <div class="contador">
+        <div class="num"><b id="c-dias">0</b><small>dias</small></div>
+        <div class="num"><b id="c-horas">0</b><small>horas</small></div>
+        <div class="num"><b id="c-min">0</b><small>min</small></div>
+        <div class="num"><b id="c-seg">0</b><small>seg</small></div>
+      </div>
+      <p class="desde">desde o nosso primeiro “oi”, em <b>14/09/2026 às 18h</b> 💬</p>
+    </div>
+  </section>
+
+  <!-- ===== Varal ===== -->
+  <section class="bloco">
+    <h2 class="titulo revela">Nosso varal de fotos</h2>
+    <p class="legenda revela">Toca numa foto pra ver maior.</p>
+    <div class="varal" id="varal"></div>
+    <p class="arraste">‹ arrasta pro lado ›</p>
+  </section>
+
+  <!-- ===== Linha do tempo ===== -->
+  <section class="bloco">
+    <h2 class="titulo revela">Nossos momentos</h2>
+    <p class="legenda revela">Coisas que eu guardo com muito carinho.</p>
+    <div class="linha">
+      <div class="momento revela"><div class="card"><img src="fotos/oculos-3.jpg" alt="Nós dois com óculos de flor" loading="lazy"><div class="txt">
+        <h3>O dia dos óculos de florzinha 🌸</h3><p>A gente entrou na loja só pra olhar e saiu rindo de tudo. Ninguém faz careta tão bem quanto você.</p></div></div></div>
+      <div class="momento revela"><div class="card"><img src="fotos/flores-2.jpg" alt="Você com o buquê" loading="lazy"><div class="txt">
+        <h3>As flores 💐</h3><p>Eu te dei flores, mas quem ganhou o presente fui eu: esse seu sorriso.</p></div></div></div>
+      <div class="momento revela"><div class="card"><img src="fotos/beijo-coberta.jpg" alt="Nosso beijo" loading="lazy"><div class="txt">
+        <h3>Quando o mundo para 💋</h3><p>Quando eu te beijo, parece que não existe mais nada. Só a gente.</p></div></div></div>
+      <div class="momento revela"><div class="card"><img src="fotos/praca.jpg" alt="A gente no shopping" loading="lazy"><div class="txt">
+        <h3>Os rolês simples 🍕</h3><p>Shopping, praça de alimentação, conversa boba… com você, qualquer rolê vira o melhor do dia.</p></div></div></div>
+      <div class="momento revela"><div class="card"><img src="fotos/abraco.jpg" alt="Nosso abraço" loading="lazy"><div class="txt">
+        <h3>Seu abraço 🤍</h3><p>É onde eu fico em paz. Meu cantinho preferido no mundo.</p></div></div></div>
+    </div>
+  </section>
+
+  <!-- ===== Motivos ===== -->
+  <section class="bloco">
+    <h2 class="titulo revela">Por que eu te amo</h2>
+    <p class="legenda revela">Toca nos cartões pra descobrir.</p>
+    <div class="motivos" id="motivos"></div>
+  </section>
+
+  <!-- ===== Carta ===== -->
+  <section class="bloco">
+    <h2 class="titulo revela">Uma carta pra você</h2>
+    <p class="legenda revela">Lê com calma. É tudo verdade.</p>
+    <div class="carta revela">
+      <div id="texto-carta"></div>
+      <div class="assinatura" id="assinatura">Com amor, Nycollas ❤️</div>
+    </div>
+  </section>
+
+  <!-- ===== Ligação ===== -->
+  <section class="bloco">
+    <h2 class="titulo revela">Minha ligação favorita</h2>
+    <p class="legenda revela">É só ouvir sua voz que meu dia fica melhor.</p>
+    <div class="celular revela">
+      <div class="quem">Amor ❤️</div>
+      <div class="tempo" id="tempo-lig">0:00</div>
+      <div class="avatar"><img src="fotos/ligacao.jpg" alt="Thawane"></div>
+      <div class="teclas">
+        <div><i>🔊</i>Alto-falante</div>
+        <div><i>📹</i>Vídeo</div>
+        <div class="fim"><i>☎️</i>Nunca desligar</div>
+      </div>
+    </div>
+    <p class="frase-lig revela">Eu desligo o telefone,<br>mas nunca desligo de você.</p>
+  </section>
+
+  <!-- ===== Final ===== -->
+  <section class="bloco final">
+    <h2 class="titulo revela">Pra terminar, Thawane…</h2>
+    <p class="legenda revela" style="margin-bottom:0">Toca no coração. Quantas vezes quiser.</p>
+    <button id="coracao" aria-label="Tocar no coração">💗</button>
+    <div id="frase-final"></div>
+    <div id="te-amo">Eu te amo.</div>
+  </section>
+
+</main>
+
+<footer><b>Thawane & Nycollas</b>feito com muito amor 💗</footer>
+
+<div id="zoom"><img alt=""><p></p></div>
+
+<script>
+/* ============ Personalize aqui ============ */
+const INICIO = new Date("2026-09-14T18:00:00-03:00"); // primeira conversa (horário de Brasília)
+
+const CARTA =
+`Thawane,
+
+No dia 14 de setembro, às 18h, a gente começou a conversar. Eu não imaginava que uma conversa ia mudar tanto os meus dias.
+
+Desde então, eu fico esperando sua mensagem, sorrio sozinho olhando o celular e conto as horas pra te ver de novo.
+
+Eu amo o seu sorriso, as suas caretas, a sua voz no telefone e o seu abraço.
+
+Obrigado por cada risada, cada ligação que era pra ser rápida e durou horas, e cada beijo que me deixa bobo.
+
+Eu não sei tudo o que vem pela frente, mas eu sei que quero viver isso do seu lado.
+
+Eu te amo muito.`;
+
+const FOTOS = [
+  ["ela.jpg",          "a dona do meu coração"],
+  ["oculos-1.jpg",     "a dupla mais linda do shopping"],
+  ["beijo-coberta.jpg","meu lugar favorito"],
+  ["oculos-2.jpg",     "modelos internacionais 😎"],
+  ["flores-1.jpg",     "flores pra minha flor"],
+  ["oculos-4.jpg",     "rindo de tudo com você"],
+  ["beijo-espelho.jpg","e o mundo sumiu"],
+  ["flores-3.jpg",     "esse sorriso é meu vício"],
+  ["oculos-5.jpg",     "biquinho oficial"],
+  ["praca.jpg",        "qualquer rolê vira o melhor"],
+  ["eu.jpg",           "o seu (convencido) 😏"],
+  ["abraco.jpg",       "meu cantinho no mundo"],
+];
+
+const SLIDES = ["oculos-4.jpg","flores-2.jpg","beijo-coberta.jpg","oculos-3.jpg","ela.jpg","praca.jpg"];
+
+const MOTIVOS = [
+  "Seu sorriso, que melhora qualquer dia",
+  "Suas caretas (todas elas)",
+  "Seu abraço apertado",
+  "Sua voz no telefone",
+  "Você me entende sem eu falar",
+  "Com você eu sou eu mesmo",
+];
+
+const FRASES_FINAIS = [
+  "Você é a melhor parte do meu dia.",
+  "Eu penso em você o tempo todo.",
+  "Com você, tudo fica mais bonito.",
+  "Seu sorriso é o meu favorito.",
+  "Obrigado por entrar na minha vida.",
+];
+/* ========================================== */
+
+const $ = id => document.getElementById(id);
+const foto = arq => "fotos/" + arq; // no arquivo final, as fotos ficam embutidas
+
+/* ---------- Envelope ---------- */
+$("envelope").addEventListener("click", () => {
+  $("envelope").classList.add("aberto");
+  tocarMusica();
+  setTimeout(() => {
+    $("abertura").classList.add("some");
+    document.body.classList.remove("travado");
+    chuva(30);
+  }, 1700);
+});
+
+/* ---------- Música (opcional: arquivo musica.mp3 ao lado do HTML) ---------- */
+const audio = $("audio"), btnMusica = $("musica");
+function tocarMusica(){
+  audio.volume = .6;
+  audio.play().then(() => { btnMusica.style.display = "grid"; btnMusica.classList.add("tocando"); }).catch(() => {});
+}
+btnMusica.onclick = () => {
+  if (audio.paused){ audio.play(); btnMusica.classList.add("tocando"); }
+  else { audio.pause(); btnMusica.classList.remove("tocando"); }
+};
+
+/* ---------- Chuva de corações ---------- */
+const SIMBOLOS = ["💗","💕","🌸","💖","❤️","🤍"];
+function gota(){
+  const s = document.createElement("span"), dur = 6 + Math.random() * 7;
+  s.className = "gota";
+  s.textContent = SIMBOLOS[Math.random() * SIMBOLOS.length | 0];
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.fontSize = 12 + Math.random() * 14 + "px";
+  s.style.animationDuration = dur + "s";
+  s.style.setProperty("--dx", (Math.random() * 100 - 50) + "px");
+  s.style.setProperty("--rot", (Math.random() * 360) + "deg");
+  $("chuva").appendChild(s);
+  setTimeout(() => s.remove(), dur * 1000);
+}
+function chuva(n){ for (let i = 0; i < n; i++) setTimeout(gota, i * 70); }
+setInterval(gota, 1100);
+
+/* ---------- Fotos passando no topo ---------- */
+(function(){
+  const box = $("slides"), pontos = $("pontos");
+  const imgs = SLIDES.map((arq, i) => {
+    const im = document.createElement("img");
+    im.src = foto(arq); im.alt = "Nós dois";
+    box.appendChild(im);
+    pontos.appendChild(document.createElement("span"));
+    return im;
+  });
+  let atual = 0;
+  function mostra(i){
+    imgs.forEach((im, k) => im.classList.toggle("ativa", k === i));
+    [...pontos.children].forEach((p, k) => p.classList.toggle("ativa", k === i));
+  }
+  mostra(0);
+  setInterval(() => { atual = (atual + 1) % imgs.length; mostra(atual); }, 3500);
+})();
+
+/* ---------- Contador (atualiza a cada segundo) ---------- */
+function contador(){
+  let s = Math.max(0, Math.floor((Date.now() - INICIO) / 1000));
+  $("c-dias").textContent = Math.floor(s / 86400); s %= 86400;
+  $("c-horas").textContent = Math.floor(s / 3600);
+  $("c-min").textContent = Math.floor(s % 3600 / 60);
+  $("c-seg").textContent = s % 60;
+}
+contador(); setInterval(contador, 1000);
+
+/* ---------- Varal ---------- */
+const varal = $("varal"), zoom = $("zoom");
+FOTOS.forEach(([arq, leg], i) => {
+  const f = document.createElement("figure");
+  f.className = "polaroid";
+  f.style.setProperty("--r", (i % 2 ? 1 : -1) * (2 + Math.random() * 2) + "deg");
+  f.style.setProperty("--d", -Math.random() * 4 + "s");
+  f.innerHTML = `<img src="${foto(arq)}" alt="${leg}" loading="lazy"><p>${leg}</p>`;
+  f.onclick = () => { zoom.querySelector("img").src = f.querySelector("img").src; zoom.querySelector("p").textContent = leg; zoom.classList.add("aberto"); };
+  varal.appendChild(f);
+});
+const corda = () => varal.style.setProperty("--w", varal.scrollWidth + "px");
+addEventListener("load", corda); addEventListener("resize", corda);
+zoom.onclick = () => zoom.classList.remove("aberto");
+
+/* ---------- Motivos ---------- */
+MOTIVOS.forEach((m, i) => {
+  const c = document.createElement("div");
+  c.className = "motivo revela";
+  c.innerHTML = `<div class="gira"><div class="face frente"><b>${i + 1}</b><small>toque</small></div><div class="face verso">${m}</div></div>`;
+  c.onclick = () => { c.classList.toggle("virado"); if (c.classList.contains("virado")) chuva(5); };
+  $("motivos").appendChild(c);
+});
+
+/* ---------- Aparecer ao rolar ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("visivel"); io.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll(".revela").forEach(el => io.observe(el));
+
+/* ---------- Carta sendo escrita ---------- */
+(function(){
+  const alvo = $("texto-carta");
+  let foi = false;
+  new IntersectionObserver((es, o) => {
+    if (!es[0].isIntersecting || foi) return;
+    foi = true; o.disconnect();
+    let i = 0;
+    const esc = t => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    (function escreve(){
+      alvo.innerHTML = esc(CARTA.slice(0, i)) + '<span class="cursor"></span>';
+      if (i < CARTA.length){
+        const c = CARTA[i++];
+        setTimeout(escreve, c === "\n" ? 250 : /[.,!?]/.test(c) ? 170 : 30);
+      } else { alvo.textContent = CARTA; $("assinatura").classList.add("aparece"); }
+    })();
+  }, { threshold: .3 }).observe(alvo);
+})();
+
+/* ---------- Tempo da ligação ---------- */
+(function(){
+  let s = 0;
+  setInterval(() => { s++; $("tempo-lig").textContent = Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }, 1000);
+})();
+
+/* ---------- Coração final ---------- */
+(function(){
+  let i = 0;
+  $("coracao").addEventListener("click", () => {
+    chuva(12);
+    const f = $("frase-final");
+    f.style.opacity = 0;
+    setTimeout(() => { f.textContent = FRASES_FINAIS[i % FRASES_FINAIS.length]; f.style.opacity = 1; i++; }, 200);
+    if (i === FRASES_FINAIS.length - 1){ $("te-amo").classList.add("aparece"); chuva(60); fogos(); }
+  });
+})();
+
+/* ---------- Fogos em forma de coração ---------- */
+function fogos(){
+  const cv = $("fogos"), ctx = cv.getContext("2d"), dpr = devicePixelRatio || 1;
+  cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const cores = ["#e8466f", "#f78ca5", "#ffd1dc", "#ff9ec4", "#c21d4c"], ps = [];
+  function explode(cx, cy){
+    for (let t = 0; t < Math.PI * 2; t += .09){
+      const hx = 16 * Math.pow(Math.sin(t), 3),
+            hy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+      ps.push({ x: cx, y: cy, vx: hx * .3, vy: hy * .3, vida: 1, cor: cores[Math.random() * cores.length | 0] });
+    }
+  }
+  let n = 0;
+  const lanca = setInterval(() => {
+    explode(innerWidth * (.2 + Math.random() * .6), innerHeight * (.2 + Math.random() * .4));
+    if (++n >= 6) clearInterval(lanca);
+  }, 450);
+  (function loop(){
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    for (let k = ps.length - 1; k >= 0; k--){
+      const q = ps[k];
+      q.x += q.vx; q.y += q.vy; q.vy += .035; q.vx *= .985; q.vy *= .985; q.vida -= .011;
+      if (q.vida <= 0){ ps.splice(k, 1); continue; }
+      ctx.globalAlpha = q.vida; ctx.fillStyle = q.cor;
+      ctx.beginPath(); ctx.arc(q.x, q.y, 2.6, 0, Math.PI * 2); ctx.fill();
+    }
+    if (ps.length || n < 6) requestAnimationFrame(loop); else ctx.clearRect(0, 0, innerWidth, innerHeight);
+  })();
+}
+</script>
+</body>
+</html>
