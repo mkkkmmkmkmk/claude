@@ -27,8 +27,8 @@
   img{display:block;max-width:100%}
   main{position:relative;z-index:2;max-width:480px;margin:0 auto;padding:0 16px 40px}
   .bloco{margin-top:64px}
-  .titulo{font-family:'Dancing Script',cursive;font-size:2.4rem;text-align:center;color:var(--rosa);line-height:1.1}
-  .legenda{text-align:center;color:var(--suave);font-size:.95rem;margin:8px auto 24px;max-width:340px;line-height:1.5}
+  .titulo{margin-bottom:22px;font-family:'Dancing Script',cursive;font-size:2.4rem;text-align:center;color:var(--rosa);line-height:1.1}
+  .legenda{text-align:center;color:var(--suave);font-size:.95rem;margin:-14px auto 24px;max-width:340px;line-height:1.5}
   .card{background:var(--branco);border-radius:26px;box-shadow:var(--sombra);padding:22px}
 
   /* ---------- pétalas / corações caindo ---------- */
@@ -39,13 +39,14 @@
   }
 
   /* ---------- envelope inicial ---------- */
-  #abertura{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:130px;
+  #abertura{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:120px;
     background:radial-gradient(circle at 50% 40%,#fff 0%,var(--azul3) 55%,var(--fundo2) 100%);transition:opacity .8s,visibility .8s;padding:20px}
   #abertura.some{opacity:0;visibility:hidden}
   #abertura .para{font-family:'Dancing Script',cursive;font-size:2.2rem;color:var(--rosa);text-align:center;line-height:1.2}
-  #abertura .toque{color:var(--suave);font-weight:600;letter-spacing:.08em;font-size:.9rem;animation:pulsa 1.6s ease-in-out infinite}
   @keyframes pulsa{50%{opacity:.35}}
-  .envelope{position:relative;width:280px;height:180px;cursor:pointer;perspective:800px}
+  .envelope{position:relative;width:280px;height:180px;cursor:pointer;perspective:800px;animation:chama 2.2s ease-in-out infinite}
+  .envelope.aberto{animation:none}
+  @keyframes chama{0%,60%,100%{transform:none}70%{transform:rotate(-3deg) scale(1.03)}80%{transform:rotate(3deg) scale(1.03)}90%{transform:rotate(-2deg)}}
   .envelope .corpo{position:absolute;inset:0;background:#9fd0f1;border-radius:10px;box-shadow:0 20px 40px rgba(90,169,220,.35)}
   .envelope .bilhete{position:absolute;left:18px;right:18px;top:14px;height:150px;background:#fff;border-radius:8px;
     display:flex;align-items:center;justify-content:center;font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--rosa);
@@ -89,14 +90,13 @@
   .varal{position:relative;display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:36px 24px 30px;margin:0 -16px;scrollbar-width:none}
   .varal::-webkit-scrollbar{display:none}
   .varal::before{content:"";position:absolute;left:0;top:24px;height:2px;width:var(--w,100%);background:var(--azul2);border-radius:2px}
-  .polaroid{flex:0 0 auto;width:210px;scroll-snap-align:center;background:#fff;padding:10px 10px 14px;border-radius:4px;position:relative;cursor:zoom-in;
+  .polaroid{flex:0 0 auto;width:210px;scroll-snap-align:center;background:#fff;padding:10px 10px 34px;border-radius:4px;position:relative;cursor:zoom-in;
     box-shadow:0 12px 26px rgba(74,58,82,.16);transform-origin:50% -14px;animation:balanca 4.5s ease-in-out infinite alternate;animation-delay:var(--d)}
   .polaroid::before{content:"";position:absolute;top:-20px;left:50%;width:12px;height:30px;transform:translateX(-50%);border-radius:3px;
     background:linear-gradient(90deg,var(--azul2),#dff0fc,var(--azul))}
   @keyframes balanca{from{transform:rotate(calc(var(--r) - 1.5deg))}to{transform:rotate(calc(var(--r) + 1.5deg))}}
   .polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover;background:var(--azul3)}
   .polaroid p{font-family:'Caveat',cursive;font-size:1.25rem;text-align:center;margin-top:8px;color:var(--texto);line-height:1.1}
-  .arraste{text-align:center;color:var(--suave);font-size:.8rem}
 
   #zoom{position:fixed;inset:0;z-index:60;background:rgba(40,60,85,.85);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px;cursor:zoom-out}
   #zoom.aberto{display:flex;animation:surge .3s ease}
@@ -186,7 +186,6 @@
     <div class="aba"></div>
     <div class="selo">♥</div>
   </div>
-  <div class="toque">TOQUE NO ENVELOPE</div>
 </div>
 
 <div id="chuva"></div>
@@ -215,16 +214,14 @@
         <div class="num"><b id="c-min">0</b><small>min</small></div>
         <div class="num"><b id="c-seg">0</b><small>seg</small></div>
       </div>
-      <p class="desde">desde o nosso primeiro “oi”, em <b>14/09/2026 às 18h</b> 💬</p>
+      <p class="desde">desde a festa de São Francisco de Assis, em <b>outubro de 2024</b> 🩵</p>
     </div>
   </section>
 
   <!-- ===== Varal ===== -->
   <section class="bloco">
     <h2 class="titulo revela">Nosso varal de fotos</h2>
-    <p class="legenda revela">Toca numa foto pra ver maior.</p>
     <div class="varal" id="varal"></div>
-    <p class="arraste">‹ arrasta pro lado ›</p>
   </section>
 
   <!-- ===== Linha do tempo ===== -->
@@ -232,8 +229,12 @@
     <h2 class="titulo revela">Nossos momentos</h2>
     <p class="legenda revela">Coisas que eu guardo com muito carinho.</p>
     <div class="linha">
+      <div class="momento revela"><div class="card"><div class="txt">
+        <h3>Onde tudo começou ⛪</h3><p>Festa de São Francisco de Assis, 2024. Você deslumbrante e toda tímida, e eu nervoso. Ninguém imaginava o que vinha pela frente.</p></div></div></div>
+      <div class="momento revela"><div class="card"><div class="txt">
+        <h3>O reencontro 🩵</h3><p>A vida separou a gente por um tempo, mas, graças a Deus, a gente se reencontrou. Desde então, estamos reescrevendo a nossa história.</p></div></div></div>
       <div class="momento revela"><div class="card"><img src="fotos/oculos-3.jpg" alt="Nós dois com óculos de flor" loading="lazy"><div class="txt">
-        <h3>O dia dos óculos de florzinha 🌸</h3><p>A gente entrou na loja só pra olhar e saiu rindo de tudo. Ninguém faz careta tão bem quanto você.</p></div></div></div>
+        <h3>O dia dos óculos de florzinha 🌸</h3><p>A gente entrou na loja só pra olhar e saiu rindo de tudo. Com você, até experimentar óculos vira diversão.</p></div></div></div>
       <div class="momento revela"><div class="card"><img src="fotos/flores-2.jpg" alt="Você com o buquê" loading="lazy"><div class="txt">
         <h3>As flores 💐</h3><p>Eu te dei flores, mas quem ganhou o presente fui eu: esse seu sorriso.</p></div></div></div>
       <div class="momento revela"><div class="card"><img src="fotos/beijo-coberta.jpg" alt="Nosso beijo" loading="lazy"><div class="txt">
@@ -248,14 +249,12 @@
   <!-- ===== Motivos ===== -->
   <section class="bloco">
     <h2 class="titulo revela">Por que eu te amo</h2>
-    <p class="legenda revela">Toca nos cartões pra descobrir.</p>
     <div class="motivos" id="motivos"></div>
   </section>
 
   <!-- ===== Carta ===== -->
   <section class="bloco">
     <h2 class="titulo revela">Uma carta pra você</h2>
-    <p class="legenda revela">Lê com calma. É tudo verdade.</p>
     <div class="carta revela">
       <div id="texto-carta"></div>
       <div class="assinatura" id="assinatura">Com amor, Nycollas ❤️</div>
@@ -282,7 +281,6 @@
   <!-- ===== Final ===== -->
   <section class="bloco final">
     <h2 class="titulo revela">Pra terminar, amor…</h2>
-    <p class="legenda revela" style="margin-bottom:0">Toca no coração. Quantas vezes quiser.</p>
     <button id="coracao" aria-label="Tocar no coração">💗</button>
     <div id="frase-final"></div>
     <div id="te-amo">Eu te amo.</div>
@@ -292,51 +290,53 @@
 
 <footer><b>de mim, pra você</b>feito com muito amor 🩵</footer>
 
-<div id="zoom"><img alt=""><p></p></div>
+<div id="zoom"><img alt=""></div>
 
 <script>
 /* ============ Personalize aqui ============ */
-const INICIO = new Date("2026-09-14T18:00:00-03:00"); // primeira conversa (horário de Brasília)
+const INICIO = new Date("2024-10-04T00:00:00-03:00"); // festa de São Francisco de Assis (horário de Brasília)
 
 const CARTA =
 `Amor,
 
-No dia 14 de setembro, às 18h, a gente começou a conversar. Eu não imaginava que uma conversa ia mudar tanto os meus dias.
+Ainda lembro perfeitamente do dia em que a gente se conheceu. Você estava deslumbrante e toda tímida (e eu também estava nervoso, kkkkkk). A gente nem imaginava o quanto ia se aproximar...
 
-Desde então, eu fico esperando sua mensagem, sorrio sozinho olhando o celular e conto as horas pra te ver de novo.
+Lembro das nossas fugidinhas pra gente se encontrar... e também lembro do dia em que precisamos partir e seguir nossos caminhos, longe um do outro.
 
-Eu amo o seu sorriso, as suas caretas, a sua voz no telefone e o seu abraço.
+Mas, graças a Deus, a gente se reencontrou e está junto de novo, reescrevendo a nossa história e buscando uma vida cheia de aventuras que ninguém pode atrapalhar.
 
-Obrigado por cada risada, cada ligação que era pra ser rápida e durou horas, e cada beijo que me deixa bobo.
+Esse site é só um presente simples, que eu fiz em alguns minutos... Espero que você goste, fiz de coração.
 
-Eu não sei tudo o que vem pela frente, mas eu sei que quero viver isso do seu lado.
+Obrigado por ser essa mulher incrível, cheia de sonhos (e de sono também), linda, dedicada, estudiosa, inteligente, independente, estressada (me amarro, uiii KKKKKKKKKKKK), cheirosa (bota cheirosa nisso, pqp) e gostosa (um tesão de mulher, hehe)!!
 
-Eu te amo muito.`;
+Eu te amo muito, meu anjoooooooo 🩵`;
 
 const FOTOS = [
-  ["ela.jpg",          "a dona do meu coração"],
-  ["oculos-1.jpg",     "a dupla mais linda do shopping"],
-  ["beijo-coberta.jpg","meu lugar favorito"],
-  ["oculos-2.jpg",     "modelos internacionais 😎"],
-  ["flores-1.jpg",     "flores pra minha flor"],
-  ["oculos-4.jpg",     "rindo de tudo com você"],
-  ["beijo-espelho.jpg","e o mundo sumiu"],
-  ["flores-3.jpg",     "esse sorriso é meu vício"],
-  ["oculos-5.jpg",     "biquinho oficial"],
-  ["praca.jpg",        "qualquer rolê vira o melhor"],
-  ["eu.jpg",           "o seu (convencido) 😏"],
-  ["abraco.jpg",       "meu cantinho no mundo"],
+  "ela.jpg",
+  "oculos-1.jpg",
+  "beijo-coberta.jpg",
+  "oculos-2.jpg",
+  "flores-1.jpg",
+  "oculos-4.jpg",
+  "beijo-espelho.jpg",
+  "flores-3.jpg",
+  "oculos-5.jpg",
+  "praca.jpg",
+  "eu.jpg",
+  "abraco.jpg",
 ];
 
 const SLIDES = ["oculos-4.jpg","flores-2.jpg","beijo-coberta.jpg","oculos-3.jpg","ela.jpg","praca.jpg"];
 
 const MOTIVOS = [
-  "Seu sorriso, que melhora qualquer dia",
-  "Suas caretas (todas elas)",
-  "Seu abraço apertado",
-  "Sua voz no telefone",
-  "Você me entende sem eu falar",
-  "Com você eu sou eu mesmo",
+  "Seu sorriso encantador",
+  "Seus olhos, que são como a imensidão do universo",
+  "Seu jeito feminino e delicado",
+  "Sua dedicação em tudo o que faz",
+  "O carinho com que você me trata",
+  "Você é inteligente e independente",
+  "Você é cheia de sonhos (e de sono 😴)",
+  "Seu cheiro (bota cheirosa nisso!)",
 ];
 
 const FRASES_FINAIS = [
@@ -421,13 +421,13 @@ contador(); setInterval(contador, 1000);
 
 /* ---------- Varal ---------- */
 const varal = $("varal"), zoom = $("zoom");
-FOTOS.forEach(([arq, leg], i) => {
+FOTOS.forEach((arq, i) => {
   const f = document.createElement("figure");
   f.className = "polaroid";
   f.style.setProperty("--r", (i % 2 ? 1 : -1) * (2 + Math.random() * 2) + "deg");
   f.style.setProperty("--d", -Math.random() * 4 + "s");
-  f.innerHTML = `<img src="${foto(arq)}" alt="${leg}" loading="lazy"><p>${leg}</p>`;
-  f.onclick = () => { zoom.querySelector("img").src = f.querySelector("img").src; zoom.querySelector("p").textContent = leg; zoom.classList.add("aberto"); };
+  f.innerHTML = `<img src="${foto(arq)}" alt="Nós dois" loading="lazy">`;
+  f.onclick = () => { zoom.querySelector("img").src = f.querySelector("img").src; zoom.classList.add("aberto"); };
   varal.appendChild(f);
 });
 const corda = () => varal.style.setProperty("--w", varal.scrollWidth + "px");
@@ -438,7 +438,7 @@ zoom.onclick = () => zoom.classList.remove("aberto");
 MOTIVOS.forEach((m, i) => {
   const c = document.createElement("div");
   c.className = "motivo revela";
-  c.innerHTML = `<div class="gira"><div class="face frente"><b>${i + 1}</b><small>toque</small></div><div class="face verso">${m}</div></div>`;
+  c.innerHTML = `<div class="gira"><div class="face frente"><b>${i + 1}</b><small>🩵</small></div><div class="face verso">${m}</div></div>`;
   c.onclick = () => { c.classList.toggle("virado"); if (c.classList.contains("virado")) chuva(5); };
   $("motivos").appendChild(c);
 });
@@ -462,7 +462,7 @@ document.querySelectorAll(".revela").forEach(el => io.observe(el));
       alvo.innerHTML = esc(CARTA.slice(0, i)) + '<span class="cursor"></span>';
       if (i < CARTA.length){
         const c = CARTA[i++];
-        setTimeout(escreve, c === "\n" ? 250 : /[.,!?]/.test(c) ? 170 : 30);
+        setTimeout(escreve, c === "\n" ? 220 : /[.,!?]/.test(c) ? 140 : 22);
       } else { alvo.textContent = CARTA; $("assinatura").classList.add("aparece"); }
     })();
   }, { threshold: .3 }).observe(alvo);
